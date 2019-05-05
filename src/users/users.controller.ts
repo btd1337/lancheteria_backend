@@ -9,13 +9,37 @@ export class UsersController {
 
   @Get()
   async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
+    return this.usersService.findAll().catch(error => {
+      switch (error.status) {
+        default:
+          throw new HttpException(
+            'Internal server error',
+            HttpStatus.INTERNAL_SERVER_ERROR,
+          );
+      }
+    });
   }
 
   @Get(':id')
   findOne(@Param('id') id) {
-    return this.usersService.findOne(+id).catch(() => {
-      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-    });
+    return this.usersService
+      .findOne(+id)
+      .then(data => {
+        if (!data) {
+          throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+        }
+      })
+      .catch(error => {
+        switch (error.status) {
+          case 404: {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+          }
+          default:
+            throw new HttpException(
+              'Internal server error',
+              HttpStatus.INTERNAL_SERVER_ERROR,
+            );
+        }
+      });
   }
 }
