@@ -12,6 +12,10 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  create(user: User): Promise<User> {
+    return this.userRepository.save(user);
+  }
+
   findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
