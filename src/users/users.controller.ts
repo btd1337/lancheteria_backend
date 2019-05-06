@@ -1,6 +1,8 @@
 import { Response } from 'express';
 
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Res } from '@nestjs/common';
+import {
+	Body, Controller, Get, HttpException, HttpStatus, Param, Post, Put, Res
+} from '@nestjs/common';
 
 import { User } from './user.entity';
 import { UsersService } from './users.service';
@@ -55,6 +57,31 @@ export class UsersController {
       })
       .catch(error => {
         switch (error.status) {
+          default:
+            throw new HttpException(
+              'Internal server error',
+              HttpStatus.INTERNAL_SERVER_ERROR,
+            );
+        }
+      });
+  }
+
+  @Put(':id')
+  update(@Param('id') id: number, @Body() user: User, @Res() res: Response) {
+    return this.usersService
+      .update(+id, user)
+      .then(data => {
+        if (!data) {
+          throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+        }
+        data.password = undefined;
+        res.json(data);
+      })
+      .catch(error => {
+        switch (error.status) {
+          case 404: {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+          }
           default:
             throw new HttpException(
               'Internal server error',

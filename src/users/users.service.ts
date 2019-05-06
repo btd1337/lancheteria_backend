@@ -12,15 +12,26 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  create(user: User): Promise<User> {
+  async create(user: User): Promise<User> {
     return this.userRepository.save(user);
   }
 
-  findAll(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
 
-  findOne(id: number): Promise<User> {
+  async findOne(id: number): Promise<User> {
     return this.userRepository.findOne(id);
+  }
+
+  async update(id: number, user: User): Promise<User> {
+    if (await this.userRepository.findOne(id)) {
+      if (user.id !== id) {
+        user.id = id;
+      }
+      return this.userRepository.save(user);
+    } else {
+      return undefined;
+    }
   }
 }
