@@ -1,7 +1,7 @@
 import { Response } from 'express';
 
 import {
-	Body, Controller, Get, HttpException, HttpStatus, Param, Post, Put, Res
+	Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Post, Put, Res
 } from '@nestjs/common';
 
 import { User } from './user.entity';
@@ -76,6 +76,30 @@ export class UsersController {
         }
         data.password = undefined;
         res.json(data);
+      })
+      .catch(error => {
+        switch (error.status) {
+          case 404: {
+            throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+          }
+          default:
+            throw new HttpException(
+              'Internal server error',
+              HttpStatus.INTERNAL_SERVER_ERROR,
+            );
+        }
+      });
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id') id: string) {
+    return this.usersService
+      .delete(+id)
+      .then(data => {
+        if (!data.affected) {
+          throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+        }
       })
       .catch(error => {
         switch (error.status) {

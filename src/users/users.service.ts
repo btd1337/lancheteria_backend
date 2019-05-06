@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,6 +14,10 @@ export class UsersService {
 
   async create(user: User): Promise<User> {
     return this.userRepository.save(user);
+  }
+
+  async delete(id: number): Promise<DeleteResult> {
+    return this.userRepository.delete(id);
   }
 
   async findAll(): Promise<User[]> {
