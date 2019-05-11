@@ -46,10 +46,12 @@ export class IsCPF implements ValidatorConstraintInterface {
   }
 
   defaultMessage(args: ValidationArguments) {
-    if (args.value.lenght !== 11) {
-      return 'The CPF value must be contains 11 digits!';
+    if (!args.value) {
+      return 'The CPF field is required.';
+    } else if (args.value.lenght !== 11) {
+      return 'The CPF value must be contains 11 digits.';
     } else {
-      return 'The value <$value> isn\'t a valid CPF!';
+      return 'The value <$value> isn\'t a valid CPF.';
     }
   }
 }
