@@ -36,7 +36,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(
+  async update(
     @Param('id') id: number,
     @Body() user: UserUpdateDto,
     @Res() res: Response,
@@ -52,7 +52,7 @@ export class UsersController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  delete(@Param('id') id: string) {
+  async delete(@Param('id') id: string) {
     return this.usersService.delete(+id).then(data => {
       if (!data.affected) {
         throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);

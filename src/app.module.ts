@@ -1,12 +1,13 @@
 import { ConfigModule, ConfigService } from 'nestjs-config';
-import * as path from 'path';
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { RestaurantsModule } from './restaurants/restaurants.module';
+import * as path from 'path';
+
+
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UsersModule } from './users/users.module';
       inject: [ConfigService],
     }),
     UsersModule,
+    RestaurantsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
