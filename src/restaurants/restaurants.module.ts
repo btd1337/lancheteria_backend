@@ -9,6 +9,6 @@ import { RestaurantsService } from './restaurants.service';
 @Module({
   controllers: [RestaurantsController],
   imports: [TypeOrmModule.forFeature([Restaurant])],
-  providers: [RestaurantsService],
+  providers: [RestaurantsService]
 })
 export class RestaurantsModule {}

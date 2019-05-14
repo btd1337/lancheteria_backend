@@ -6,5 +6,5 @@ export default {
   database: process.env.TYPEORM_DATABASE,
   port: Number(process.env.TYPEORM_PORT),
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: process.env.TYPEORM_SYNCHRONIZE,
+  synchronize: process.env.TYPEORM_SYNCHRONIZE
 };

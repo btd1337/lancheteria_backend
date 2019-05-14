@@ -1,7 +1,17 @@
 import { Response } from 'express';
 
 import {
-	Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Post, Put, Res
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  Res
 } from '@nestjs/common';
 
 import { UserCreateDto } from './user-create.dto';
@@ -39,7 +49,7 @@ export class UsersController {
   async update(
     @Param('id') id: number,
     @Body() user: UserUpdateDto,
-    @Res() res: Response,
+    @Res() res: Response
   ) {
     return this.usersService.update(+id, user).then(data => {
       if (!data) {

@@ -1,4 +1,11 @@
-import { IsEmail, IsEnum, IsNotEmpty, Length, MaxLength, Validate } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  Length,
+  MaxLength,
+  Validate
+} from 'class-validator';
 import { Gender } from 'src/utils/gender.enum';
 
 import { IsCPF } from '../utils/cpf.validator';

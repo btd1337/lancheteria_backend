@@ -11,7 +11,7 @@ import { RestaurantCreateDto } from './restaurants-create.dto';
 export class RestaurantsService {
   constructor(
     @InjectRepository(Restaurant)
-    private readonly restaurantRepository: Repository<Restaurant>,
+    private readonly restaurantRepository: Repository<Restaurant>
   ) {}
 
   async create(restaurant: RestaurantCreateDto): Promise<Restaurant> {
@@ -32,7 +32,7 @@ export class RestaurantsService {
 
   async update(
     id: number,
-    restaurant: RestaurantUpdateDto,
+    restaurant: RestaurantUpdateDto
   ): Promise<Restaurant> {
     if (await this.restaurantRepository.findOne(id)) {
       if (restaurant.id !== id) {

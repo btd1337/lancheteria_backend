@@ -1,4 +1,11 @@
-import { IsInt, IsNotEmpty, IsNumber, IsPositive, Length, Min } from 'class-validator';
+import {
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsPositive,
+  Length,
+  Min
+} from 'class-validator';
 
 export class MenuItemDto {
   @IsNotEmpty()

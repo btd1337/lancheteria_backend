@@ -1,6 +1,8 @@
 // CPF Validator for NestJS
 import {
-	ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface
+  ValidationArguments,
+  ValidatorConstraint,
+  ValidatorConstraintInterface
 } from 'class-validator';
 
 @ValidatorConstraint({ name: 'isCPF', async: false })

@@ -4,5 +4,5 @@ export default {
 
   isProduction() {
     return this.get('express.environment') === 'production';
-  },
+  }
 };

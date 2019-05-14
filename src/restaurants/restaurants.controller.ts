@@ -1,5 +1,14 @@
 import {
-	Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Post, Put
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+  Put
 } from '@nestjs/common';
 
 import { RestaurantUpdateDto } from './restaurant-update.dto';
@@ -33,7 +42,7 @@ export class RestaurantsController {
   @Put(':id')
   async update(
     @Param('id') id: number,
-    @Body() restaurant: RestaurantUpdateDto,
+    @Body() restaurant: RestaurantUpdateDto
   ) {
     return this.restaurantsService.update(+id, restaurant).then(data => {
       if (!data) {
