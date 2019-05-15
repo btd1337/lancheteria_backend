@@ -1,14 +1,5 @@
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpCode,
-  HttpException,
-  HttpStatus,
-  Param,
-  Post,
-  Put
+	Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Post, Put
 } from '@nestjs/common';
 
 import { RestaurantUpdateDto } from './restaurant-update.dto';
@@ -16,7 +7,7 @@ import { Restaurant } from './restaurant.entity';
 import { RestaurantCreateDto } from './restaurants-create.dto';
 import { RestaurantsService } from './restaurants.service';
 
-@Controller('restaurants')
+@Controller()
 export class RestaurantsController {
   constructor(private readonly restaurantsService: RestaurantsService) {}
 
