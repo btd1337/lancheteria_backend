@@ -12,7 +12,7 @@ export class MenuService {
     private readonly menuRepository: Repository<MenuItem>
   ) {}
 
-  async findAllByRestaurantId(id: number): Promise<MenuItem[]> {
+  async findAllItemsByRestaurantId(id: number): Promise<MenuItem[]> {
     return this.menuRepository.find({
       restaurant: { id }
     });

@@ -7,8 +7,8 @@ import { MenuService } from './menu.service';
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
-  @Get()
-  async findAll(@Param('id') id): Promise<MenuItem[]> {
-    return this.menuService.findAllByRestaurantId(+id);
+  @Get('items')
+  async findAllItems(@Param('id') id): Promise<MenuItem[]> {
+    return this.menuService.findAllItemsByRestaurantId(+id);
   }
 }
